@@ -1,0 +1,230 @@
+/* ===== Indigo Dashboard Sidebar (clean like reference) ===== */
+:root{
+  /* brand palette */
+  --pri-700:#4F46E5;  /* indigo 600–700 */
+  --pri-600:#6366F1;
+  --pri-500:#7C83FF;
+  --pri-100:#EEF2FF;
+
+  /* neutrals */
+  --bg:#FFFFFF;
+  --muted:#6B7280;        /* text secondary */
+  --ink:#0F172A;          /* text primary (slate-900) */
+  --line:#E5E7EB;         /* borders */
+  --hover:#F3F4F6;        /* hover bg */
+  --shadow:0 10px 30px rgba(15, 23, 42, .06);
+}
+
+/* container */
+.sidebar.sidebar-modern{
+  background: var(--bg);
+  color: var(--ink);
+  border-right: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+/* headings & text */
+.sidebar.sidebar-modern .sidebar-heading{
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: .75rem 1.25rem .5rem;
+}
+
+/* brand */
+.sidebar-brand{
+  min-height: 64px;
+}
+.sidebar-brand .sidebar-brand-icon{
+  width: 36px; height: 36px; border-radius: 12px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg, var(--pri-600), var(--pri-500));
+  color:#fff;
+  box-shadow: 0 6px 18px rgba(99,102,241,.25), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.sidebar-brand-text{
+  font-weight: 800;
+  color: var(--ink) !important;
+  letter-spacing:.2px;
+}
+
+/* divider */
+.sidebar .sidebar-divider{ border-color: var(--line) !important; }
+
+/* ===== nav item ===== */
+.sidebar .nav-item{ position: relative; }
+.sidebar .nav-link{
+  display:flex; align-items:center; gap:.75rem;
+  height: 44px;
+  margin: .2rem .75rem;
+  padding: .5rem .75rem;
+  border-radius: 12px;
+  color: var(--ink);
+  transition: background .18s ease, box-shadow .18s ease, color .18s ease, transform .12s ease;
+}
+.sidebar .nav-link:hover{
+  background: var(--hover);
+}
+
+/* icon: soft circle */
+.sidebar .nav-link i{
+  width:28px; height:28px; border-radius:9px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, #fff, #F9FAFB);
+  color: var(--ink) !important;
+  font-size: .95rem;
+}
+
+/* active = pill style like the reference */
+.sidebar .nav-item.active > .nav-link,
+.sidebar .collapse-item.active{
+  background: var(--pri-100) !important;
+  color: var(--pri-700) !important;
+  box-shadow: inset 0 0 0 1px rgba(99,102,241,.22);
+}
+.sidebar .nav-item.active > .nav-link i{
+  border-color: rgba(99,102,241,.25);
+  background: linear-gradient(180deg, #fff, #EEF2FF);
+  color: var(--pri-700) !important;
+}
+
+/* left accent bar (subtle) */
+.sidebar .nav-item.active > .nav-link::before{
+  content:""; position:absolute; left:6px; top:50%; transform:translateY(-50%);
+  width:4px; height:60%; border-radius:10px;
+  background: linear-gradient(180deg, var(--pri-600), var(--pri-500));
+}
+
+/* collapse caret */
+.nav-link .chev{ margin-left:auto; opacity:.55; transition:transform .16s ease, opacity .16s; }
+.nav-link[aria-expanded="true"] .chev{ transform: rotate(90deg); opacity:.9; }
+
+/* collapse panel */
+.sidebar .collapse-inner{
+  background: #F8FAFC;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin: .25rem .5rem .5rem 3.15rem; /* indent like list in screenshot */
+  padding: .25rem .5rem;
+}
+.sidebar .collapse-item{
+  border-radius:10px;
+  padding: .45rem .6rem;
+  margin: .15rem;
+  color: var(--ink);
+}
+.sidebar .collapse-item:hover{
+  background:#fff;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* logout button hover consistent */
+.sidebar .nav-item .nav-link#logout-link:hover{
+  background:#FEF2F2;
+  box-shadow: inset 0 0 0 1px #FECACA;
+}
+
+/* scrollbar subtle (if sidebar is scrollable) */
+.sidebar.sidebar-modern::-webkit-scrollbar{ width: 8px; }
+.sidebar.sidebar-modern::-webkit-scrollbar-thumb{
+  background: #E5E7EB; border-radius: 8px;
+}
+
+/* responsive: slightly tighter on <1200px */
+@media (max-width: 1200px){
+  .sidebar .nav-link{ margin: .15rem .5rem; }
+  .sidebar .collapse-inner{ margin-left: 3rem; }
+}
+/* === WIDTH TUNING (desktop & collapsed) === */
+:root{
+  --sb-w: 268px;          /* lebar sidebar normal */
+  --sb-w-collapsed: 76px; /* jika pakai mode collapsed/toggled */
+  --sb-pad-x: 18px;       /* gutter kiri-kanan konten link */
+  --sb-icon-gap: 12px;    /* jarak icon ↔ label */
+}
+
+/* set lebar sidebar */
+.sidebar.sidebar-modern{
+  width: var(--sb-w) !important;
+  min-width: var(--sb-w) !important;
+}
+
+/* jika tema kamu pakai layout flex SB-Admin-2,
+   aturan ini opsional. Aktifkan hanya bila konten tidak ikut menyesuaikan */
+#content-wrapper{
+  width: calc(100% - var(--sb-w));
+}
+
+/* brand area sedikit lega */
+.sidebar-brand{
+  padding-left: calc(var(--sb-pad-x) + 4px) !important;
+  padding-right: var(--sb-pad-x) !important;
+}
+
+/* link row: tinggi & padding lebih lapang */
+.sidebar .nav-link{
+  height: 46px;
+  padding: .55rem var(--sb-pad-x);
+  margin: .22rem calc(var(--sb-pad-x) - 6px);
+  gap: var(--sb-icon-gap);
+}
+
+/* ikon bulat tetap proporsional */
+.sidebar .nav-link i{
+  width: 30px; height: 30px; font-size: 1rem;
+}
+
+/* caret posisi ujung kanan rapi */
+.sidebar .nav-link .chev{ margin-left:auto; }
+
+/* indent submenu disesuaikan dgn lebar & ukuran icon */
+.sidebar .collapse-inner{
+  margin: .25rem var(--sb-pad-x) .6rem calc(30px + var(--sb-icon-gap) + var(--sb-pad-x) + 8px);
+  /* 30 icon + 12 gap + padding kiri + ekstra 8 */
+}
+
+/* item submenu lebih lega */
+.sidebar .collapse-item{
+  padding: .48rem .6rem;
+  font-size: .925rem;
+}
+
+/* divider melebar penuh area padding */
+.sidebar .sidebar-divider{
+  margin: .8rem var(--sb-pad-x);
+}
+
+/* ===== OPTIONAL: mode collapsed (jika pakai tombol #sidebarToggle) ===== */
+.sidebar.toggled{
+  width: var(--sb-w-collapsed) !important;
+  min-width: var(--sb-w-collapsed) !important;
+}
+.sidebar.toggled .nav-link{
+  justify-content: center;
+  padding-left: 0; padding-right: 0;
+  gap: 0;
+}
+.sidebar.toggled .nav-link span,
+.sidebar.toggled .sidebar-heading,
+.sidebar.toggled .chev,
+.sidebar.toggled .collapse,
+.sidebar.toggled hr.sidebar-divider{
+  display: none !important;
+}
+/* konten melebar saat collapsed */
+.sidebar.toggled ~ #content-wrapper{
+  width: calc(100% - var(--sb-w-collapsed));
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px){
+  :root{ --sb-w: 244px; }
+}
+@media (max-width: 992px){
+  /* biarkan Bootstrap handle offcanvas; tidak force width */
+  #content-wrapper{ width: 100%; }
+}

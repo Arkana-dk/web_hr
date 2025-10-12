@@ -1,0 +1,19 @@
+
+//=============== Workschedule Import ====================
+app/
+ ├─ Http/
+ │   ├─ Controllers/
+ │   │   └─ Admin/
+ │   │       └─ WorkScheduleController.php        // jadi tipis (delegasi ke service)
+ │   └─ Requests/
+ │       └─ WorkScheduleImportRequest.php         // validasi file upload
+ ├─ Imports/
+ │   └─ WorkScheduleSheet.php                     // parser Excel (Maatwebsite/Excel)
+ ├─ Services/
+ │   └─ WorkSchedule/
+ │       ├─ Dto/
+ │       │   └─ WorkScheduleParseResult.php       // DTO hasil parse (valid/invalid)
+ │       ├─ ShiftCodeParser.php                   // helper ekstrak kode shift dari sel
+ │       └─ WorkScheduleImporter.php              // orchestration: parse + build payload
+ └─ Repositories/
+     └─ WorkScheduleRepository.php                // simpan/update jadwal (opsional)
