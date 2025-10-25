@@ -20,11 +20,39 @@
   {{-- Select2 CSS --}}
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <style>
-    .select2-container--default .select2-selection--single {
-      height: 38px; padding: 6px 12px; border: 1px solid #d1d3e2; border-radius: 0.35rem;
+    /* Animasi fade-in untuk konten halaman */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .select2-container--default .select2-selection--single .select2-selection__rendered { line-height: 24px; }
-    .select2-container--default .select2-selection--single .select2-selection__arrow { height: 36px; }
+
+    /* Terapkan ke container utama di dalam #content */
+    #content .container-fluid {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    /* Transisi layout untuk sidebar dan content wrapper */
+    #content-wrapper, #accordionSidebar {
+      transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Fixed sidebar and scrollable content */
+    html, body {
+      height: 100%;
+      overflow: hidden; /* Mencegah body dari scrolling */
+    }
+    #wrapper {
+      height: 100vh;
+    }
+    #content-wrapper {
+      overflow-y: auto; /* Menjadikan area ini yang bisa di-scroll */
+      height: 100vh;
+    }
+    #content > .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1030; /* Pastikan navbar di atas konten lain */
+    }
   </style>
 
   @stack('styles')

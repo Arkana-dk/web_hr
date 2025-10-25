@@ -1,230 +1,635 @@
 /* ===== Indigo Dashboard Sidebar (clean like reference) ===== */
-:root{
-  /* brand palette */
-  --pri-700:#4F46E5;  /* indigo 600–700 */
-  --pri-600:#6366F1;
-  --pri-500:#7C83FF;
-  --pri-100:#EEF2FF;
+:root {
+    /* brand palette */
+    --pri-700: #4f46e5; /* indigo 600–700 */
+    --pri-600: #6366f1;
+    --pri-500: #7c83ff;
+    --pri-100: #eef2ff;
 
-  /* neutrals */
-  --bg:#FFFFFF;
-  --muted:#6B7280;        /* text secondary */
-  --ink:#0F172A;          /* text primary (slate-900) */
-  --line:#E5E7EB;         /* borders */
-  --hover:#F3F4F6;        /* hover bg */
-  --shadow:0 10px 30px rgba(15, 23, 42, .06);
+    /* neutrals */
+    --bg: #ffffff;
+    --muted: #6b7280; /* text secondary */
+    --ink: #0f172a; /* text primary (slate-900) */
+    --line: #e5e7eb; /* borders */
+    --hover: #f3f4f6; /* hover bg */
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
 
 /* container */
-.sidebar.sidebar-modern{
-  background: var(--bg);
-  color: var(--ink);
-  border-right: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  position: relative;
+.sidebar.sidebar-modern {
+    background: var(--bg);
+    color: var(--ink);
+    border-right: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    position: relative;
 }
 
-/* headings & text */
-.sidebar.sidebar-modern .sidebar-heading{
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin: .75rem 1.25rem .5rem;
+/* headings & text - lebih subtle */
+.sidebar.sidebar-modern .sidebar-heading {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin: 1rem var(--sb-pad-x) 0.5rem;
+    opacity: 0.7;
 }
 
 /* brand */
-.sidebar-brand{
-  min-height: 64px;
+.sidebar-brand {
+    min-height: 64px;
 }
-.sidebar-brand .sidebar-brand-icon{
-  width: 36px; height: 36px; border-radius: 12px;
-  display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(135deg, var(--pri-600), var(--pri-500));
-  color:#fff;
-  box-shadow: 0 6px 18px rgba(99,102,241,.25), inset 0 1px 0 rgba(255,255,255,.25);
+.sidebar-brand .sidebar-brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--pri-600), var(--pri-500));
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-.sidebar-brand-text{
-  font-weight: 800;
-  color: var(--ink) !important;
-  letter-spacing:.2px;
+.sidebar-brand-text {
+    font-weight: 800;
+    color: var(--ink) !important;
+    letter-spacing: 0.2px;
 }
 
 /* divider */
-.sidebar .sidebar-divider{ border-color: var(--line) !important; }
+.sidebar .sidebar-divider {
+    border-color: var(--line) !important;
+}
 
 /* ===== nav item ===== */
-.sidebar .nav-item{ position: relative; }
-.sidebar .nav-link{
-  display:flex; align-items:center; gap:.75rem;
-  height: 44px;
-  margin: .2rem .75rem;
-  padding: .5rem .75rem;
-  border-radius: 12px;
-  color: var(--ink);
-  transition: background .18s ease, box-shadow .18s ease, color .18s ease, transform .12s ease;
+.sidebar .nav-item {
+    position: relative;
 }
-.sidebar .nav-link:hover{
-  background: var(--hover);
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 44px;
+    margin: 0.2rem 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    color: var(--ink);
+    transition: background 0.18s ease, box-shadow 0.18s ease, color 0.18s ease,
+        transform 0.12s ease;
+}
+.sidebar .nav-link:hover {
+    /* Hover: tampilkan strip warna di setiap sisi (top/right/bottom/left)
+       menggunakan inset box-shadow supaya terlihat seperti border berwarna
+       tanpa memunculkan efek mengambang. Tambahkan transform kecil untuk
+       feedback interaktif yang halus. */
+    background: linear-gradient(
+        180deg,
+        rgba(124, 131, 255, 0.04),
+        var(--hover)
+    );
+    box-shadow: inset 3px 0 0 0 rgba(99, 102, 241, 0.2),
+        /* left */ inset -3px 0 0 0 rgba(99, 102, 241, 0.14),
+        /* right */ inset 0 3px 0 0 rgba(99, 102, 241, 0.08),
+        /* top */ inset 0 -3px 0 0 rgba(99, 102, 241, 0.06); /* bottom */
+    transform: translateY(-0.5px);
+    transition: background 0.18s ease, box-shadow 0.18s ease,
+        transform 0.12s ease;
+}
+
+/* Fokus keyboard yang jelas namun subtle */
+.sidebar .nav-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12),
+        inset 3px 0 0 0 rgba(99, 102, 241, 0.22);
 }
 
 /* icon: soft circle */
-.sidebar .nav-link i{
-  width:28px; height:28px; border-radius:9px;
-  display:inline-flex; align-items:center; justify-content:center;
-  border:1px solid var(--line);
-  background: linear-gradient(180deg, #fff, #F9FAFB);
-  color: var(--ink) !important;
-  font-size: .95rem;
+.sidebar .nav-link i {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, #fff, #f9fafb);
+    color: var(--ink) !important;
+    font-size: 0.95rem;
 }
 
 /* active = pill style like the reference */
 .sidebar .nav-item.active > .nav-link,
-.sidebar .collapse-item.active{
-  background: var(--pri-100) !important;
-  color: var(--pri-700) !important;
-  box-shadow: inset 0 0 0 1px rgba(99,102,241,.22);
+.sidebar .collapse-item.active {
+    background: var(--pri-100) !important;
+    color: var(--pri-700) !important;
+    box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.22);
 }
-.sidebar .nav-item.active > .nav-link i{
-  border-color: rgba(99,102,241,.25);
-  background: linear-gradient(180deg, #fff, #EEF2FF);
-  color: var(--pri-700) !important;
+.sidebar .nav-item.active > .nav-link i {
+    border-color: rgba(99, 102, 241, 0.25);
+    background: linear-gradient(180deg, #fff, #eef2ff);
+    color: var(--pri-700) !important;
 }
 
 /* left accent bar (subtle) */
-.sidebar .nav-item.active > .nav-link::before{
-  content:""; position:absolute; left:6px; top:50%; transform:translateY(-50%);
-  width:4px; height:60%; border-radius:10px;
-  background: linear-gradient(180deg, var(--pri-600), var(--pri-500));
+.sidebar .nav-item.active > .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    border-radius: 10px;
+    background: linear-gradient(180deg, var(--pri-600), var(--pri-500));
 }
 
 /* collapse caret */
-.nav-link .chev{ margin-left:auto; opacity:.55; transition:transform .16s ease, opacity .16s; }
-.nav-link[aria-expanded="true"] .chev{ transform: rotate(90deg); opacity:.9; }
+.nav-link .chev {
+    margin-left: auto;
+    opacity: 0.55;
+    transition: transform 0.16s ease, opacity 0.16s;
+}
+.nav-link[aria-expanded="true"] .chev {
+    transform: rotate(90deg);
+    opacity: 0.9;
+}
 
 /* collapse panel */
-.sidebar .collapse-inner{
-  background: #F8FAFC;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  margin: .25rem .5rem .5rem 3.15rem; /* indent like list in screenshot */
-  padding: .25rem .5rem;
+.sidebar .collapse-inner {
+    background: #f8fafc;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin: 0.25rem 0.5rem 0.5rem 3.15rem; /* indent like list in screenshot */
+    padding: 0.25rem 0.5rem;
 }
-.sidebar .collapse-item{
-  border-radius:10px;
-  padding: .45rem .6rem;
-  margin: .15rem;
-  color: var(--ink);
+.sidebar .collapse-item {
+    border-radius: 10px;
+    padding: 0.45rem 0.6rem;
+    margin: 0.15rem;
+    color: var(--ink);
 }
-.sidebar .collapse-item:hover{
-  background:#fff;
-  box-shadow: inset 0 0 0 1px var(--line);
+.sidebar .collapse-item:hover {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--line);
 }
 
 /* logout button hover consistent */
-.sidebar .nav-item .nav-link#logout-link:hover{
-  background:#FEF2F2;
-  box-shadow: inset 0 0 0 1px #FECACA;
+.sidebar .nav-item .nav-link#logout-link:hover {
+    background: #fef2f2;
+    box-shadow: inset 0 0 0 1px #fecaca;
 }
 
 /* scrollbar subtle (if sidebar is scrollable) */
-.sidebar.sidebar-modern::-webkit-scrollbar{ width: 8px; }
-.sidebar.sidebar-modern::-webkit-scrollbar-thumb{
-  background: #E5E7EB; border-radius: 8px;
+.sidebar.sidebar-modern::-webkit-scrollbar {
+    width: 8px;
+}
+.sidebar.sidebar-modern::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 8px;
 }
 
 /* responsive: slightly tighter on <1200px */
-@media (max-width: 1200px){
-  .sidebar .nav-link{ margin: .15rem .5rem; }
-  .sidebar .collapse-inner{ margin-left: 3rem; }
+@media (max-width: 1200px) {
+    .sidebar .nav-link {
+        margin: 0.15rem 0.5rem;
+    }
+    .sidebar .collapse-inner {
+        margin-left: 3rem;
+    }
 }
 /* === WIDTH TUNING (desktop & collapsed) === */
-:root{
-  --sb-w: 268px;          /* lebar sidebar normal */
-  --sb-w-collapsed: 76px; /* jika pakai mode collapsed/toggled */
-  --sb-pad-x: 18px;       /* gutter kiri-kanan konten link */
-  --sb-icon-gap: 12px;    /* jarak icon ↔ label */
+:root {
+    --sb-w: 240px; /* lebar sidebar optimal - tidak terlalu lebar */
+    --sb-w-collapsed: 72px; /* collapsed mode lebih compact */
+    --sb-pad-x: 16px; /* padding horizontal optimal */
+    --sb-icon-gap: 12px; /* gap icon dan text */
 }
 
 /* set lebar sidebar */
-.sidebar.sidebar-modern{
-  width: var(--sb-w) !important;
-  min-width: var(--sb-w) !important;
+.sidebar.sidebar-modern {
+    width: var(--sb-w) !important;
+    min-width: var(--sb-w) !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
 }
 
-/* jika tema kamu pakai layout flex SB-Admin-2,
-   aturan ini opsional. Aktifkan hanya bila konten tidak ikut menyesuaikan */
-#content-wrapper{
-  width: calc(100% - var(--sb-w));
+/* Content wrapper adjustment */
+#wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#content-wrapper {
+    margin-left: var(--sb-w);
+    width: calc(100% - var(--sb-w));
+    transition: all 0.3s ease;
+    min-height: 100vh;
 }
 
 /* brand area sedikit lega */
-.sidebar-brand{
-  padding-left: calc(var(--sb-pad-x) + 4px) !important;
-  padding-right: var(--sb-pad-x) !important;
+.sidebar-brand {
+    padding: 1.25rem var(--sb-pad-x) !important;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--line);
 }
 
-/* link row: tinggi & padding lebih lapang */
-.sidebar .nav-link{
-  height: 46px;
-  padding: .55rem var(--sb-pad-x);
-  margin: .22rem calc(var(--sb-pad-x) - 6px);
-  gap: var(--sb-icon-gap);
+.sidebar-brand:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
 }
 
-/* ikon bulat tetap proporsional */
-.sidebar .nav-link i{
-  width: 30px; height: 30px; font-size: 1rem;
+/* Toggle button placed inside .sidebar-brand (top-right) */
+.sidebar .sidebar-brand .btn#sidebarToggle {
+    margin-left: auto;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(99,102,241,0.12);
+    background: linear-gradient(180deg, #fff, #f8f9ff);
+    color: var(--pri-600);
+    box-shadow: 0 4px 12px rgba(99,102,241,0.06);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s;
+}
+.sidebar .sidebar-brand .btn#sidebarToggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(99,102,241,0.10);
+}
+
+/* hide toggle on small screens if needed (kept responsive like before) */
+.sidebar .sidebar-brand .btn#sidebarToggle.d-none.d-md-inline-flex {
+    display: none !important;
+}
+@media (min-width: 768px) {
+    .sidebar .sidebar-brand .btn#sidebarToggle.d-none.d-md-inline-flex {
+        display: inline-flex !important;
+    }
+}
+
+/* hamburger -> X animation helpers */
+.sidebar .sidebar-brand .btn#sidebarToggle i {
+    transition: transform 0.18s ease, color 0.12s ease;
+}
+.sidebar .sidebar-brand .btn#sidebarToggle.open i {
+    transform: rotate(90deg) scale(1.05);
+}
+
+/* ===== Dark mode: extend to main UI components ===== */
+.dark-mode body {
+    background: #071025;
+    color: #d7e6f6;
+}
+.dark-mode .container-fluid,
+.dark-mode .card,
+.dark-mode .card-body,
+.dark-mode .card-header,
+.dark-mode .panel,
+.dark-mode .modal-content {
+    background: #081426;
+    color: #d7e6f6;
+    border-color: rgba(255,255,255,0.04);
+}
+.dark-mode .card .card-header,
+.dark-mode .card-header {
+    background: rgba(255,255,255,0.02);
+}
+.dark-mode .btn-primary,
+.dark-mode .btn-outline-primary {
+    color: #e8f0ff;
+}
+.dark-mode .topbar,
+.dark-mode .navbar,
+.dark-mode .page-heading {
+    background: transparent;
+    color: #d7e6f6;
+}
+.dark-mode .table thead th,
+.dark-mode table.table {
+    color: #cfe7ff;
+}
+
+/* Theme toggle button (sun / moon) */
+.sidebar .sidebar-brand .btn#themeToggle {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(99,102,241,0.08);
+    background: transparent;
+    color: var(--pri-600);
+}
+.sidebar .sidebar-brand .btn#themeToggle i {
+    transition: transform 0.18s ease, color 0.12s ease;
+}
+.sidebar .sidebar-brand .btn#themeToggle:active i {
+    transform: scale(0.92);
+}
+
+/* Dark mode overrides for sidebar */
+.dark-mode .sidebar.sidebar-modern {
+    --bg: #0b1220;
+    --ink: #e6eef8;
+    --muted: #9aa6b2;
+    --line: rgba(255,255,255,0.06);
+    --hover: rgba(255,255,255,0.02);
+    box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    background: var(--bg);
+    color: var(--ink);
+    border-right: 1px solid var(--line);
+}
+.dark-mode .sidebar .nav-link {
+    color: var(--ink);
+}
+.dark-mode .sidebar .nav-link i {
+    color: var(--ink) !important;
+    background: rgba(255,255,255,0.02);
+    border-color: rgba(255,255,255,0.04);
+}
+.dark-mode .sidebar .nav-item.active > .nav-link,
+.dark-mode .sidebar .collapse-item.active {
+    background: rgba(124,131,255,0.08) !important;
+    color: var(--pri-100) !important;
+}
+
+/* link row: compact & clean - pastikan teks dan ikon ter-center secara vertikal */
+.sidebar .nav-link {
+    display: flex; /* pastikan flex untuk vertical alignment */
+    align-items: center; /* center teks & ikon */
+    box-sizing: border-box; /* include padding in min-height calculations */
+    min-height: 40px; /* gunakan min-height agar padding tidak memindahkan konten */
+    padding: 0.5rem var(--sb-pad-x);
+    margin: 0.15rem calc(var(--sb-pad-x) / 2);
+    gap: var(--sb-icon-gap);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1; /* hindari teks membesar dan turun */
+}
+
+/* ikon minimalis - tanpa border box */
+.sidebar .nav-link i {
+    width: 20px;
+    height: 20px;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    background: none !important;
+    color: var(--ink) !important;
+    align-self: center; /* pastikan ikon tetap centered saat ada override */
+}
+
+/* pastikan teks juga center untuk menghindari baseline offset */
+.sidebar .nav-link span {
+    display: inline-block;
+    align-self: center;
 }
 
 /* caret posisi ujung kanan rapi */
-.sidebar .nav-link .chev{ margin-left:auto; }
-
-/* indent submenu disesuaikan dgn lebar & ukuran icon */
-.sidebar .collapse-inner{
-  margin: .25rem var(--sb-pad-x) .6rem calc(30px + var(--sb-icon-gap) + var(--sb-pad-x) + 8px);
-  /* 30 icon + 12 gap + padding kiri + ekstra 8 */
+.sidebar .nav-link .chev {
+    margin-left: auto;
 }
 
-/* item submenu lebih lega */
-.sidebar .collapse-item{
-  padding: .48rem .6rem;
-  font-size: .925rem;
+/* Hide the small chevron placed immediately after the menu text (user requested) */
+.sidebar .nav-link > .chev {
+    display: none !important;
 }
 
-/* divider melebar penuh area padding */
-.sidebar .sidebar-divider{
-  margin: .8rem var(--sb-pad-x);
+/* indent submenu disesuaikan - lebih compact */
+.sidebar .collapse-inner {
+    margin: 0.2rem var(--sb-pad-x) 0.5rem
+        calc(20px + var(--sb-icon-gap) + var(--sb-pad-x));
+    background: rgba(248, 250, 252, 0.5);
+    border: 1px solid rgba(229, 231, 235, 0.6);
+    border-radius: 10px;
+    padding: 0.25rem;
+}
+
+/* item submenu compact */
+.sidebar .collapse-item {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+/* divider compact */
+.sidebar .sidebar-divider {
+    margin: 0.75rem var(--sb-pad-x);
+    opacity: 0.4;
+}
+
+/* active state lebih subtle dengan accent kiri */
+.sidebar .nav-item.active > .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 70%;
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(180deg, var(--pri-600), var(--pri-500));
 }
 
 /* ===== OPTIONAL: mode collapsed (jika pakai tombol #sidebarToggle) ===== */
-.sidebar.toggled{
-  width: var(--sb-w-collapsed) !important;
-  min-width: var(--sb-w-collapsed) !important;
+.sidebar.toggled {
+    width: var(--sb-w-collapsed) !important;
+    min-width: var(--sb-w-collapsed) !important;
 }
-.sidebar.toggled .nav-link{
-  justify-content: center;
-  padding-left: 0; padding-right: 0;
-  gap: 0;
+.sidebar.toggled .nav-link {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 0;
 }
 .sidebar.toggled .nav-link span,
 .sidebar.toggled .sidebar-heading,
 .sidebar.toggled .chev,
 .sidebar.toggled .collapse,
-.sidebar.toggled hr.sidebar-divider{
-  display: none !important;
+.sidebar.toggled hr.sidebar-divider {
+    display: none !important;
 }
 /* konten melebar saat collapsed */
-.sidebar.toggled ~ #content-wrapper{
-  width: calc(100% - var(--sb-w-collapsed));
+.sidebar.toggled ~ #content-wrapper {
+    margin-left: var(--sb-w-collapsed);
+    width: calc(100% - var(--sb-w-collapsed));
+}
+
+/* ===== MINIFIED MODE (ultra compact) ===== */
+.sidebar.minified {
+    width: 68px !important;
+    min-width: 68px !important;
+}
+
+.sidebar.minified .sidebar-brand {
+    justify-content: center;
+    padding: 1rem 0.5rem !important;
+}
+
+.sidebar.minified .sidebar-brand-text,
+.sidebar.minified .sidebar-brand .btn#themeToggle {
+    display: none !important;
+}
+
+.sidebar.minified .sidebar-brand-icon {
+    margin: 0 auto;
+}
+
+.sidebar.minified .nav-link {
+    justify-content: center;
+    padding: 0.65rem 0.25rem;
+    gap: 0;
+    position: relative;
+}
+
+.sidebar.minified .nav-link span,
+.sidebar.minified .sidebar-heading,
+.sidebar.minified .chev,
+.sidebar.minified .collapse,
+.sidebar.minified hr.sidebar-divider {
+    display: none !important;
+}
+
+/* Tooltip on hover untuk minified mode */
+.sidebar.minified .nav-link {
+    overflow: visible;
+}
+
+.sidebar.minified .nav-link::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 12px;
+    padding: 0.5rem 0.75rem;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 9999;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar.minified .nav-link:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(4px);
+}
+
+/* Icon lebih prominent di minified */
+.sidebar.minified .nav-link i {
+    width: 24px;
+    height: 24px;
+    font-size: 1.1rem;
+}
+
+/* Active state di minified mode */
+.sidebar.minified .nav-item.active > .nav-link::before {
+    left: 4px;
+    width: 4px;
+    height: 80%;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Content adjustment untuk minified */
+.sidebar.minified ~ #content-wrapper {
+    margin-left: 68px;
+    width: calc(100% - 68px);
+}
+
+/* Dark mode minified */
+.dark-mode .sidebar.minified .nav-link::after {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--ink);
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 1200px){
-  :root{ --sb-w: 244px; }
+@media (max-width: 1200px) {
+    :root {
+        --sb-w: 220px;
+    }
 }
-@media (max-width: 992px){
-  /* biarkan Bootstrap handle offcanvas; tidak force width */
-  #content-wrapper{ width: 100%; }
+@media (max-width: 992px) {
+    /* Mobile: sidebar tersembunyi dengan overlay */
+    .sidebar.sidebar-modern {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1050;
+    }
+    
+    /* Show sidebar when toggled on mobile */
+    .sidebar.toggled,
+    .sidebar.minified {
+        transform: translateX(0);
+    }
+    
+    /* Overlay backdrop */
+    .sidebar.toggled::before,
+    .sidebar.minified::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: var(--sb-w);
+        width: calc(100vw - var(--sb-w));
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    #content-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Mobile: force collapsed state to hide sidebar */
+    body.sidebar-toggled .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    body.sidebar-toggled .sidebar::before {
+        display: none;
+    }
+}
+
+/* Smooth scrollbar */
+.sidebar.sidebar-modern::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar.sidebar-modern::-webkit-scrollbar-track {
+    background: transparent;
+}
+.sidebar.sidebar-modern::-webkit-scrollbar-thumb {
+    background: rgba(203, 213, 225, 0.5);
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.sidebar.sidebar-modern::-webkit-scrollbar-thumb:hover {
+    background: rgba(203, 213, 225, 0.8);
 }

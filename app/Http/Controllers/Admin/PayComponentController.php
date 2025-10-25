@@ -138,6 +138,18 @@ public function restore(PayComponent $payComponent)
         ->with('success', "Komponen {$payComponent->code} dipulihkan.");
 }
 
+public function activate(PayComponent $payComponent)
+    {
+        if (!$payComponent->getKey()) {
+            abort(404, 'PayComponent not found for activation.');
+        }
+
+        \App\Models\PayComponent::whereKey($payComponent->getKey())
+            ->update(['active' => 1]);
+
+        return back()->with('success', "Komponen {$payComponent->code} diaktifkan kembali.");
+    }
+
 
 
     /* ================= Helpers ================= */

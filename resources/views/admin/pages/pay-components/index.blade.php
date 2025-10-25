@@ -151,21 +151,32 @@
               </span>
             </td>
             <td class="text-right">
-              <div class="btn-group" role="group">
-                <a href="{{ route('admin.pay-components.rates.index', $it) }}"
-                   class="btn btn-sm btn-outline-primary rounded-pill mr-1">
-                  <i class="fas fa-receipt mr-1"></i> Rates
-                </a>
-                <a href="{{ route('admin.pay-components.edit', $it) }}"
-                   class="btn btn-sm btn-outline-secondary rounded-pill mr-1">
-                  <i class="fas fa-pen mr-1"></i> Edit
-                </a>
-                <button type="button"
-                      class="btn btn-sm btn-outline-danger rounded-pill"
-                      onclick="confirmArchive('{{ route('admin.pay-components.archive',$it) }}','{{ $it->code }}')">
-                <i class="fas fa-archive mr-1"></i> Archive
-              </button>
-
+              <div class="dropdown">
+                <button class="btn btn-sm btn-icon btn-light" type="button" data-toggle="dropdown">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="{{ route('admin.pay-components.rates.index', $it) }}">
+                    <i class="fas fa-receipt fa-fw mr-2"></i>Rates
+                  </a>
+                  <a class="dropdown-item" href="{{ route('admin.pay-components.edit', $it) }}">
+                    <i class="fas fa-pen fa-fw mr-2"></i>Edit
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  @if($it->active)
+                    <a class="dropdown-item text-danger" href="#"
+                       onclick="confirmArchive('{{ route('admin.pay-components.archive',$it) }}','{{ $it->code }}')">
+                      <i class="fas fa-archive fa-fw mr-2"></i>Archive
+                    </a>
+                  @else
+                    <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                      <i class="fas fa-rotate-left fa-fw mr-2"></i>Activate
+                      <form method="post" action="{{ route('admin.pay-components.activate', $it) }}" class="d-none">
+                        @csrf
+                      </form>
+                    </a>
+                  @endif
+                </div>
               </div>
             </td>
           </tr>

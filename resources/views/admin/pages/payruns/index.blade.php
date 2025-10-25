@@ -173,11 +173,11 @@
   <div class="card border-0 shadow-soft card-rounded mb-3">
     <div class="card-body pb-2">
       <form method="get" class="form-row align-items-center">
-        <div class="col-sm-6 col-lg-4 mb-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
           <input type="search" name="q" value="{{ request('q') }}" class="form-control"
                  placeholder="Cari pay group / catatan…" aria-label="Cari pay group atau catatan">
         </div>
-        <div class="col-sm-6 col-lg-3 mb-2">
+        <div class="col-lg-2 col-md-6 col-sm-12 mb-2">
           <select name="group" class="custom-select" aria-label="Filter berdasarkan grup">
             <option value="">Semua grup</option>
             @foreach(($groups ?? []) as $g)
@@ -187,11 +187,11 @@
         </div>
 
         {{-- Periode ringkas (opsional: sediakan di controller) --}}
-        <div class="col-sm-6 col-lg-3 mb-2">
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
           <input type="month" name="period" value="{{ request('period') }}" class="form-control" placeholder="Periode (YYYY-MM)">
         </div>
 
-        <div class="col-sm-auto ml-sm-auto d-flex mb-2">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex mb-2">
           <button class="btn btn-outline-secondary rounded-pill mr-2" type="submit">
             <i class="fas fa-filter mr-1"></i> Terapkan
           </button>

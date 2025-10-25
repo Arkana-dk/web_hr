@@ -33,9 +33,8 @@
 <ul class="navbar-nav sidebar sidebar-modern accordion" id="accordionSidebar" aria-label="Admin sidebar">
 
   {{-- BRAND --}}
-  <a class="sidebar-brand d-flex align-items-center px-3" href="{{ route('admin.dashboard') }}">
-    <div class="sidebar-brand-icon"><i class="fas fa-user-shield"></i></div>
-    <div class="sidebar-brand-text mx-3">Admin Panel</div>
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
+    <div class="sidebar-brand-text">Admin Panel</div>
   </a>
 
   <hr class="sidebar-divider my-2">
@@ -234,7 +233,6 @@
          aria-expanded="{{ $openPayroll ? 'true' : 'false' }}" aria-controls="navPayroll">
         <i class="fas fa-fw fa-money-bill-wave"></i>
         <span>Payroll</span>
-        <span class="chev"><i class="fas fa-chevron-right fa-sm"></i></span>
       </a>
 
       <div id="navPayroll" class="collapse {{ $openPayroll ? 'show' : '' }}" data-parent="#accordionSidebar">
@@ -296,9 +294,6 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
   </li>
 
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle" aria-label="Toggle sidebar"></button>
-  </div>
 </ul>
 
 @push('scripts')

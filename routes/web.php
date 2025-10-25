@@ -185,6 +185,8 @@ Route::prefix('admin')->as('admin.')->middleware(['web','auth:web'])->group(func
             ->name('pay-components.archive');
         Route::post('pay-components/{payComponent}/restore', [PayComponentController::class, 'restore'])
             ->name('pay-components.restore');
+        Route::post('pay-components/{payComponent}/activate', [PayComponentController::class, 'activate'])
+            ->name('pay-components.activate');
 
         Route::resource('pay-groups',           PayGroupController::class)->except(['show']);
         Route::resource('pay-groups.components', PayGroupComponentController::class)
