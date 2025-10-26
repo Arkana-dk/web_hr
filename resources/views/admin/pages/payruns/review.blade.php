@@ -63,12 +63,12 @@
   .btn-soft-white:hover{ background: rgba(255,255,255,.25); color:#fff; }
 
   /* ===== SUMMARY ===== */
-  .stat-card{ border: 1px solid rgba(0,0,0,.06); border-radius: 1rem; }
+  .stat-card{ border: 0; border-radius: 1rem; background: transparent; }
   .summary-grid{ display:grid; grid-template-columns:1fr; gap:.75rem }
   @media (min-width:576px){ .summary-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
-  .summary-item{ background:#f8f9fa; border-radius:.9rem; padding:.8rem 1rem; }
-  .summary-item .label{ font-size:.8rem; color:#6c757d; margin-bottom:.25rem }
-  .summary-item .value{ font-weight:700; font-variant-numeric: tabular-nums; text-align:right }
+  .summary-item{ background:transparent; border-radius:.9rem; padding:.25rem .5rem; }
+  .summary-item .label{ font-size:.8rem; color:#6c757d; margin-bottom:0 }
+  .summary-item .value{ font-weight:600; font-size: 1.1rem; font-variant-numeric: tabular-nums; text-align:right; color: #343a40; }
 
   /* ===== TABLE ===== */
   .table-sticky thead th{ position:sticky; top:0; background:#fff; z-index:2; }
@@ -228,28 +228,28 @@
   {{-- ===== SUMMARY STRIP ===== --}}
   <div class="row g-3 mb-3 align-items-stretch">
     <div class="col-12 col-md-3">
-      <div class="card stat-card shadow-sm h-100">
-        <div class="card-body d-flex justify-content-between align-items-center">
-          <div>
-            <div class="text-muted small">Karyawan di Pay Group</div>
-            <div class="fs-5 fw-semibold">{{ $totalEmployees }}</div>
+      <div class="d-flex flex-column gap-3 h-100">
+        <div class="card stat-card shadow-sm">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <div class="text-muted small">Karyawan di Pay Group</div>
+              <div class="fs-5 fw-semibold">{{ $totalEmployees }}</div>
+            </div>
+            <i class="bi bi-people fs-3 text-secondary"></i>
           </div>
-          <i class="bi bi-people fs-3 text-secondary"></i>
+        </div>
+        <div class="card stat-card shadow-sm">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <div class="text-muted small">Items (halaman / total)</div>
+              <div class="fs-5 fw-semibold">{{ $items->count() }} / {{ $items->total() }}</div>
+            </div>
+            <i class="bi bi-list-check fs-3 text-secondary"></i>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-3">
-      <div class="card stat-card shadow-sm h-100">
-        <div class="card-body d-flex justify-content-between align-items-center">
-          <div>
-            <div class="text-muted small">Items (halaman / total)</div>
-            <div class="fs-5 fw-semibold">{{ $items->count() }} / {{ $items->total() }}</div>
-          </div>
-          <i class="bi bi-list-check fs-3 text-secondary"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-9">
       <div class="card stat-card shadow-sm h-100">
         <div class="card-body">
           <div class="text-muted small mb-2">Ringkas (halaman ini)</div>

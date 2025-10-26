@@ -162,10 +162,6 @@
            class="btn btn-outline-secondary {{ $density==='compact' ? 'active' : '' }}"
            title="Lebih rapat" data-toggle="tooltip"><i class="fas fa-grip-lines-vertical"></i></a>
       </div>
-
-      <button class="btn btn-soft-primary rounded-pill px-3" data-toggle="modal" data-target="#filterModal">
-        <i class="fas fa-sliders-h mr-1"></i> Filter
-      </button>
     </div>
   </div>
 
@@ -341,59 +337,6 @@
         @endif
       </small>
       {{ $runs->withQueryString()->links() }}
-    </div>
-  </div>
-
-  {{-- ===== FILTER MODAL ===== --}}
-  <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-slideout modal-dialog-right" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="filterModalLabel">Filter Pay Runs</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <form method="get" id="filter-form">
-          <div class="modal-body">
-            <div class="form-group">
-              <label class="mb-1">Status</label>
-              <select name="status" class="custom-select">
-                <option value="">Semua</option>
-                @foreach (['draft','simulated','finalized','locked'] as $s)
-                  <option value="{{ $s }}" @selected(request('status')===$s)>{{ ucfirst($s) }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="mb-1">Pay Group</label>
-              <select name="group" class="custom-select">
-                <option value="">Semua</option>
-                @foreach(($groups ?? []) as $g)
-                  <option value="{{ $g->id }}" @selected(request('group')==$g->id)>{{ $g->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="mb-1">Periode (YYYY-MM)</label>
-              <input type="month" name="period" value="{{ request('period') }}" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="mb-1">Pencarian</label>
-              <input type="search" name="q" value="{{ request('q') }}" class="form-control" placeholder="Cari pay group / catatan…">
-            </div>
-          </div>
-          <div class="modal-footer d-block">
-            <div class="d-flex">
-              <button class="btn btn-primary rounded-pill flex-fill mr-2" type="submit">
-                <i class="fas fa-filter mr-1"></i> Terapkan
-              </button>
-              <a href="{{ route('admin.payruns.index') }}" class="btn btn-outline-secondary rounded-pill flex-fill"
-                 data-confirm="Reset semua filter?" data-confirm-text="Semua isian akan dikosongkan.">
-                Reset
-              </a>
-            </div>
-          </div>
-        </form>
-      </div>
     </div>
   </div>
 </div> {{-- /container --}}

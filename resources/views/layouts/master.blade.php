@@ -53,6 +53,23 @@
       top: 0;
       z-index: 1030; /* Pastikan navbar di atas konten lain */
     }
+
+    /* Fix untuk modal agar bisa di-scroll */
+    body.modal-open {
+      overflow: hidden !important;
+      padding-right: 0 !important;
+    }
+    .modal {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .modal-dialog {
+      margin: 1.75rem auto;
+    }
+    .modal-open .modal {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
   </style>
 
   @stack('styles')
