@@ -59,13 +59,3 @@
         padding: 0 0.25rem; // Add some padding
     }
 }
-
-// Multi-line truncate with tooltip
-.truncate-2-lines {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-word;
-}
